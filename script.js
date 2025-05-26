@@ -26,7 +26,7 @@ function operate(firstNumber, operator, secondNumber) {
             return subtract(firstNumber, secondNumber);
         case '*':
             return multiply(firstNumber, secondNumber);
-        case '/':
+        case '÷':
             return divide(firstNumber, secondNumber);
     }
 }
@@ -96,7 +96,6 @@ operatorButtons.forEach(button => {
     });
 });
 
-
 equalButton.addEventListener('click', function () {
     if (!currentOperator) return;
 
@@ -111,20 +110,34 @@ equalButton.addEventListener('click', function () {
 
     let second = typeof secondNumber === "string" ? parseFloat(secondNumber) : secondNumber;
 
+    if (isNaN(first) || isNaN(second)) {
+        display.textContent = "Error";
+        return;
+    }
+
+    console.log('first:', first, typeof first);
+    console.log('second:', second, typeof second);
+    console.log('operator:', currentOperator);
+
     let result = operate(first, currentOperator, second);
-    const symbol = currentOperator === '*' ? '×' : currentOperator;
+
+    console.log('result:', result);
+
     if (result === null) {
         display.textContent = "Undefined";
         equation.textContent = `${first} ÷ ${second} =`;
         return;
-    } else {
-        equation.textContent = `${first} ${symbol} ${second} =`;
     }
+
+    const symbol = currentOperator === '*' ? '×' : currentOperator;
+    equation.textContent = `${first} ${symbol} ${second} =`;
+
     let newResult = Math.round(result * 100) / 100;
     display.textContent = String(newResult).slice(0, 10);
     firstNumber = result;
     shouldResetDisplay = true;
 });
+
 
 clearButton.addEventListener('click', function() {
     firstNumber = "";
