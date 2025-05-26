@@ -32,7 +32,13 @@ button {
     background-color: hsl(224, 19%, 23%);
 }
 
-.operators {
+button:hover {
+    background-color: hsl(225, 17%, 28%);
+}
+
+.operators,
+.clear,
+.delete {
     color: hsl(288, 61%, 57%);
 }
 
@@ -73,6 +79,10 @@ button {
     height: 143px;
 }
 
+.equals:hover {
+    background-color: hsl(288, 70%, 62%);
+}
+
 .screen {
     display: flex;
     flex-direction: column;
@@ -87,5 +97,5 @@ button {
 
 .answer {
     display: flex;
-    font-size: 60px;
+    font-size: 55px;
 }
